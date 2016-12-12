@@ -1,0 +1,86 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+
+<head>
+    <title>Getting Started Extension's Popup</title>
+    <style>
+    body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+    }
+    
+    #status {
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 400px;
+    }
+    </style>
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="pop.js"></script>
+    <link rel="stylesheet" href="./mdl/material.min.css">
+    <script src="./mdl/material.min.js"></script>
+    <script src="./libs/jquery-3.1.1.min.js"></script>
+    <script src="./libs/mustache.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+    .demo-card-wide.mdl-card {
+        width: 400px;
+    }
+    
+    .demo-card-wide > .mdl-card__title {
+        color: #fff;
+        height: 50px;
+        background-color: #bd9cb7;
+    }
+    
+    .demo-card-wide > .mdl-card__menu {
+        color: #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="taskList">
+            <div class="date_split">
+                <h4>Today</h4>
+            </div>
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h3 class="mdl-card__title-text">Welcome</h3>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Get Started</a>
+                </div>
+                <div class="mdl-card__menu">
+                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">share</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="action">
+            <button id="create" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                <i class="material-icons">add</i>
+            </button>
+        </div>
+    </div>
+    <script src="create.js"></script>
+</body>
+
+</html>
