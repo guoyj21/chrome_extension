@@ -7,80 +7,158 @@
 <html>
 
 <head>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-    body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-    }
-    
-    #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-    }
-    </style>
-    <!--
+	<title>Getting Started Extension's Popup</title>
+	<style>
+		body {
+			font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+			font-size: 100%;
+		}
+
+		#status {
+			/* avoid an excessively wide status text */
+			white-space: pre;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-width: 400px;
+		}
+
+		#main {
+			width: 540px;
+			height: 600px;
+		}
+	</style>
+	<!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
-    <script src="pop.js"></script>
-    <link rel="stylesheet" href="./mdl/material.min.css">
-    <script src="./mdl/material.min.js"></script>
-    <script src="./libs/jquery-3.1.1.min.js"></script>
-    <script src="./libs/mustache.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
-    .demo-card-wide.mdl-card {
-        width: 400px;
-    }
-    
-    .demo-card-wide > .mdl-card__title {
-        color: #fff;
-        height: 50px;
-        background-color: #bd9cb7;
-    }
-    
-    .demo-card-wide > .mdl-card__menu {
-        color: #fff;
-    }
-    </style>
+	<script src="pop.js"></script>
+	<link rel="stylesheet" href="./mdl/material.min.css">
+	<script src="./mdl/material.min.js"></script>
+	<script src="./libs/jquery-3.1.1.min.js"></script>
+	<script src="./libs/mustache.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<style>
+		.demo-card-wide.mdl-card {
+			width: 400px;
+		}
+
+		.demo-card-wide > .mdl-card__title {
+			color: #fff;
+			height: 50px;
+			background-color: #bd9cb7;
+		}
+
+		.demo-card-wide > .mdl-card__menu {
+			color: #fff;
+		}
+
+		.mdl-list li {
+			border-bottom: 1px solid #D9D7D6;
+		}
+
+        .mdl-list__item-primary-content {
+            margin-left: 15px;
+        }
+
+		#taskList {
+			width: 500px;
+			margin: 0 auto;
+		}
+	</style>
 </head>
 
 <body>
-    <div id="main">
-        <div id="taskList">
-            <div class="date_split">
-                <h4>Today</h4>
-            </div>
-            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title">
-                    <h3 class="mdl-card__title-text">Welcome</h3>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Get Started</a>
-                </div>
-                <div class="mdl-card__menu">
-                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                        <i class="material-icons">share</i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="action">
-            <button id="create" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-                <i class="material-icons">add</i>
-            </button>
-        </div>
-    </div>
-    <script src="create.js"></script>
+	<div id="main">
+		<!-- Always shows a header, even in smaller screens. -->
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+			<header class="mdl-layout__header">
+				<div class="mdl-layout__header-row">
+					<!-- Title -->
+					<span class="mdl-layout-title">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="sample1">
+                            <label class="mdl-textfield__label" for="sample1">Text...</label>
+                        </div>
+                        <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="1">account_box</div>
+
+
+                    </span>
+					<!-- Add spacer, to align navigation to the right -->
+					<div class="mdl-layout-spacer"></div>
+					<!-- Navigation. We hide it in small screens. -->
+					<nav class="mdl-navigation mdl-layout--large-screen-only">
+						<a class="mdl-navigation__link" href="">Link</a>
+						<a class="mdl-navigation__link" href="">Link</a>
+						<a class="mdl-navigation__link" href="">Link</a>
+						<a class="mdl-navigation__link" href="">Link</a>
+					</nav>
+				</div>
+			</header>
+			<div class="mdl-layout__drawer">
+				<span class="mdl-layout-title">Title</span>
+				<nav class="mdl-navigation">
+					<a class="mdl-navigation__link" href="">Link</a>
+					<a class="mdl-navigation__link" href="">Link</a>
+					<a class="mdl-navigation__link" href="">Link</a>
+					<a class="mdl-navigation__link" href="">Link</a>
+				</nav>
+			</div>
+			<main class="mdl-layout__content">
+				<div class="page-content">
+					<div id="taskList">
+						<div class="task">
+							<h4>Today</h4>
+							<ul class="demo-list-control mdl-list">
+								<li class="mdl-list__item">
+									<span class="mdl-list__item-secondary-action">
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+                                        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+                                        </label>
+                                    </span>
+									<span class="mdl-list__item-primary-content">
+                                        coding with me
+                                    </span>
+
+									<span>adfasdfasdf</span>
+								</li>
+                                <li class="mdl-list__item">
+									<span class="mdl-list__item-secondary-action">
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+                                        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+                                        </label>
+                                    </span>
+									<span class="mdl-list__item-primary-content">
+                                        coding with me
+                                    </span>
+
+									<span>adfasdfasdf</span>
+								</li>
+                                <li class="mdl-list__item">
+									<span class="mdl-list__item-secondary-action">
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+                                        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+                                        </label>
+                                    </span>
+									<span class="mdl-list__item-primary-content">
+                                        coding with me
+                                    </span>
+
+									<span>adfasdfasdf</span>
+								</li>
+							</ul>
+						</div>
+						<div class="task">
+							<h4>Tomorrow</h4>
+
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+	<script src="create.js"></script>
 </body>
 
 </html>
